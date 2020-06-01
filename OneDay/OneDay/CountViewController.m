@@ -8,11 +8,10 @@
 
 #import "CountViewController.h"
 #import "Masonry.h"
-#import "FzhDrawChart.h"
 #import "AFNetworking.h"
 #import "listDiaryViewController.h"
-#import "PGBarChart.h"
-@interface CountViewController ()<PGBarChartDelegate, PGBarChartDataSource>
+#import "JChartView.h"
+@interface CountViewController ()
 @property (nonatomic, weak) UIView *dateView;
 @property (nonatomic, strong) NSMutableArray *dateArray;
 @property (nonatomic, strong) NSMutableArray *buttonArray;
@@ -28,6 +27,11 @@
 @property(nonatomic)UIView *weatherView;
 @property (nonatomic, strong) NSMutableArray *weathvalueArray;
 @property (nonatomic, strong) NSMutableArray *weathkeyArray;
+@property (nonatomic, strong) NSMutableArray *moodvalueArray;
+@property (nonatomic, strong) NSMutableArray *moodkeyArray;
+@property (nonatomic, strong) NSMutableArray *eventvalueArray;
+@property (nonatomic, strong) NSMutableArray *eventkeyArray;
+
 
 
 
@@ -241,105 +245,13 @@
     }
     [self loadWithDate:_currentDate];
     
-
-    _weatherView = [[UIView alloc] init];
-  //  _weatherView.backgroundColor = [UIColor blackColor];
-    [_scrollView addSubview:_weatherView];
-    [_weatherView mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.left.equalTo(_scrollView).offset(37);
-        make.top.equalTo(dateView).offset(266);
-        make.size.mas_equalTo(CGSizeMake(341, 188));
-    }];
-    
-   /*
-    //天气分布
-    UIView *weatherView = [[UIView alloc] init];
-    weatherView.backgroundColor = [UIColor whiteColor];
-    weatherView.layer.shadowColor=[UIColor grayColor].CGColor;
-    weatherView.layer.shadowOpacity=0.8;
-    weatherView.layer.shadowRadius=5;
-    weatherView.layer.shadowOffset=CGSizeMake(1, 2);
-    [scrollView addSubview:weatherView];
-    [weatherView mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.left.equalTo(scrollView).offset(37);
-        make.top.equalTo(dateView).offset(266);
-        make.size.mas_equalTo(CGSizeMake(341, 188));
-    }];
-    UILabel *weatherLabel=[[UILabel alloc]init];
-    weatherLabel.text=@"天气分布";
-    weatherLabel.font=[UIFont systemFontOfSize:13];
-    [weatherView addSubview:weatherLabel];
-    [weatherLabel mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.centerX.equalTo(weatherView);
-        make.top.equalTo(weatherView).offset(12);
-        make.size.mas_equalTo(CGSizeMake(55, 23));
-    }];
-    self.weatherDrawView = [[FzhDrawChart alloc]initWithFrame:CGRectMake(30, 45, 300, 120)];
-    self.weatherDrawView.backgroundColor = [UIColor clearColor];
-    [weatherView addSubview:self.weatherDrawView];
-    
-    //事件分布
-    UIView *eventView = [[UIView alloc] init];
-    eventView.backgroundColor = [UIColor whiteColor];
-    eventView.layer.shadowColor=[UIColor grayColor].CGColor;
-    eventView.layer.shadowOpacity=0.8;
-    eventView.layer.shadowRadius=5;
-    eventView.layer.shadowOffset=CGSizeMake(1, 2);
-    
-    [scrollView addSubview:eventView];
-    [eventView mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.left.equalTo(scrollView).offset(37);
-        make.top.equalTo(weatherView).offset(204);
-        make.size.mas_equalTo(CGSizeMake(341, 188));
-    }];
-    UILabel *eventLabel=[[UILabel alloc]init];
-    eventLabel.text=@"事件分布";
-    eventLabel.font=[UIFont systemFontOfSize:13];
-    [eventView addSubview:eventLabel];
-    [eventLabel mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.centerX.equalTo(eventView);
-        make.top.equalTo(eventView).offset(12);
-        make.size.mas_equalTo(CGSizeMake(55, 23));
-    }];
-    self.eventDrawView = [[FzhDrawChart alloc]initWithFrame:CGRectMake(30, 45, 300, 120)];
-    self.eventDrawView.backgroundColor = [UIColor clearColor];
-    [eventView addSubview:self.eventDrawView];
-    
-    
-    //心情分布
-    UIView *moodView = [[UIView alloc] init];
-    moodView.backgroundColor = [UIColor whiteColor];
-   
-    moodView.layer.shadowColor=[UIColor grayColor].CGColor;
-    moodView.layer.shadowOpacity=0.8;
-    moodView.layer.shadowRadius=5;
-    moodView.layer.shadowOffset=CGSizeMake(1, 2);
-    [scrollView addSubview:moodView];
-    [moodView mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.left.equalTo(scrollView).offset(37);
-        make.top.equalTo(eventView).offset(204);
-        make.size.mas_equalTo(CGSizeMake(341, 188));
-    }];
-    UILabel *moodLabel=[[UILabel alloc]init];
-    moodLabel.text=@"心情分布";
-    moodLabel.font=[UIFont systemFontOfSize:13];
-    [moodView addSubview:moodLabel];
-    [moodLabel mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.centerX.equalTo(moodView);
-        make.top.equalTo(moodView).offset(12);
-        make.size.mas_equalTo(CGSizeMake(55, 23));
-    }];
-    self.moodDrawView = [[FzhDrawChart alloc]initWithFrame:CGRectMake(self.view.bounds.size.width/2-120, 25, 150, 180)];
-    self.moodDrawView.backgroundColor = [UIColor clearColor];
-    [moodView addSubview:self.moodDrawView];
+    //统计
     [self draw];
-*/
 }
 
-/*
+
 -(void)draw
 {
-    
     _phone=[[NSUserDefaults standardUserDefaults] objectForKey:@"phone"];
     NSDictionary *dic1=@{
                          @"phone":_phone,
@@ -360,20 +272,25 @@
             [_weathkeyArray addObject:key];
             [_weathvalueArray addObject:value];
         }
-        
-    
-        [self.weatherDrawView drawZhuZhuangTu:_weathkeyArray and:_weathvalueArray];
-        
+        JChartView* chartView = [[JChartView alloc] initWithFrame:CGRectMake(37, 266, 341, 188)];
+        chartView.backgroundColor = [UIColor whiteColor];
+        chartView.warningColor = [UIColor colorWithRed:124/255.0 green:228/255.0 blue:255/255.0 alpha:1];
+        chartView.warningValue = 100;
+        chartView.xyLineColor = [UIColor colorWithRed:178/255.0 green:255/255.0 blue:156/255.0 alpha:1];
+        chartView.perWidth = 45;
+        chartView.cylindColor = [UIColor colorWithRed:124/255.0 green:228/255.0 blue:255/255.0 alpha:1];
+        chartView.maxValue = 100;
+        chartView.lineChartYLabelArray = @[@"0",@"25",@"50",@"75",@"100"];
+        chartView.lineChartXLabelArray =_weathkeyArray;
+        chartView.lineChartDataArray = _weathvalueArray;
+        [_scrollView addSubview:chartView];
     } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
         NSError *err=error;
         NSLog(@"%@",err);
     }];
     
     
-    
-    
-    
-    
+
     NSDictionary *dic2=@{
                          @"phone":_phone,
                          };
@@ -393,13 +310,25 @@
             [_eventkeyArray addObject:key];
             [_eventvalueArray addObject:value];
         }
-        
-        [self.eventDrawView drawZhuZhuangTu:_eventkeyArray and:_eventvalueArray];
+        JChartView* chartView = [[JChartView alloc] initWithFrame:CGRectMake(37, 464, 341, 188)];
+               chartView.backgroundColor = [UIColor whiteColor];
+               chartView.warningColor = [UIColor colorWithRed:124/255.0 green:228/255.0 blue:255/255.0 alpha:1];
+               chartView.warningValue = 100;
+               chartView.xyLineColor = [UIColor colorWithRed:178/255.0 green:255/255.0 blue:156/255.0 alpha:1];
+               chartView.perWidth = 45;
+               chartView.cylindColor = [UIColor colorWithRed:124/255.0 green:228/255.0 blue:255/255.0 alpha:1];
+               chartView.maxValue = 100;
+               chartView.lineChartYLabelArray = @[@"0",@"25",@"50",@"75",@"100"];
+               chartView.lineChartXLabelArray =_eventkeyArray;
+               chartView.lineChartDataArray = _eventvalueArray;
+               [_scrollView addSubview:chartView];
         
     } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
         NSError *err=error;
         NSLog(@"%@",err);
     }];
+    
+    
     NSDictionary *dic3=@{
                          @"phone":_phone,
                          };
@@ -419,7 +348,18 @@
             [_moodkeyArray addObject:key];
             [_moodvalueArray addObject:value];
         }
-      [self.moodDrawView drawBingZhuangTu:_moodkeyArray and:_moodvalueArray];
+        JChartView* chartView = [[JChartView alloc] initWithFrame:CGRectMake(37, 662, 341, 188)];
+                      chartView.backgroundColor = [UIColor whiteColor];
+                      chartView.warningColor = [UIColor colorWithRed:124/255.0 green:228/255.0 blue:255/255.0 alpha:1];
+                      chartView.warningValue = 100;
+                      chartView.xyLineColor = [UIColor colorWithRed:178/255.0 green:255/255.0 blue:156/255.0 alpha:1];
+                      chartView.perWidth = 45;
+                      chartView.cylindColor = [UIColor colorWithRed:124/255.0 green:228/255.0 blue:255/255.0 alpha:1];
+                      chartView.maxValue = 100;
+                      chartView.lineChartYLabelArray = @[@"0",@"25",@"50",@"75",@"100"];
+                      chartView.lineChartXLabelArray =_eventkeyArray;
+                      chartView.lineChartDataArray = _eventvalueArray;
+                      [_scrollView addSubview:chartView];
         
     } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
         NSError *err=error;
@@ -430,12 +370,12 @@
     
     
 }
-*/
+
 -(void)viewWillAppear:(BOOL)animated
 {
     self.tabBarController.tabBar.hidden=NO;
     [self loadWithDate:_currentDate];
-   // [self draw];
+    [self draw];
     
 }
 - (void)loadWithDate:(NSDate *)date {
@@ -482,12 +422,14 @@
             [button setTitle:[NSString stringWithFormat:@"%zd",i] forState:UIControlStateNormal];
             [button setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
             button.titleLabel.font=[UIFont systemFontOfSize:12];
-            [button addTarget:self action:@selector(search:) forControlEvents:UIControlEventTouchDown];
             //获取日期 判断是否在网络请求的数组中
             NSString *datestr=[NSString stringWithFormat:@"%zd-%02ld-%02d",[self getCurrentYear:date],(long)[self getCurrentMonth:date],i];
             if ([_dateArray containsObject:datestr])
             {
-                button.backgroundColor =[UIColor grayColor];
+                [button addTarget:self action:@selector(search:) forControlEvents:UIControlEventTouchDown];
+                button.layer.masksToBounds=YES;
+                button.layer.cornerRadius=10;
+                button.backgroundColor =[UIColor colorWithRed:124/255.0 green:228/255.0 blue:255/255.0 alpha:0.7];
                 [button setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
             }
             

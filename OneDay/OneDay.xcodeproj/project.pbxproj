@@ -28,7 +28,9 @@
 		D01F5B032484D66D0084B630 /* play_grey_15.png in Resources */ = {isa = PBXBuildFile; fileRef = D01F5AEE2484D66C0084B630 /* play_grey_15.png */; };
 		D01F5B042484D66D0084B630 /* play_grey_07.png in Resources */ = {isa = PBXBuildFile; fileRef = D01F5AEF2484D66C0084B630 /* play_grey_07.png */; };
 		D01F5B052484D66D0084B630 /* play_grey_19.png in Resources */ = {isa = PBXBuildFile; fileRef = D01F5AF02484D66D0084B630 /* play_grey_19.png */; };
-		D0510F372477F5FB0079E0E3 /* FzhDrawChart.m in Sources */ = {isa = PBXBuildFile; fileRef = D0510F362477F5FB0079E0E3 /* FzhDrawChart.m */; };
+		D01F5B0D2484DE6E0084B630 /* CylindricalShellCell.m in Sources */ = {isa = PBXBuildFile; fileRef = D01F5B092484DE6D0084B630 /* CylindricalShellCell.m */; };
+		D01F5B0E2484DE6E0084B630 /* XLabelCell.m in Sources */ = {isa = PBXBuildFile; fileRef = D01F5B0A2484DE6D0084B630 /* XLabelCell.m */; };
+		D01F5B0F2484DE6E0084B630 /* JChartView.m in Sources */ = {isa = PBXBuildFile; fileRef = D01F5B0B2484DE6D0084B630 /* JChartView.m */; };
 		D07D2F02245469F10000823D /* AFHTTPSessionManager.m in Sources */ = {isa = PBXBuildFile; fileRef = D07D2EE1245469F00000823D /* AFHTTPSessionManager.m */; };
 		D07D2F03245469F10000823D /* AFNetworkReachabilityManager.m in Sources */ = {isa = PBXBuildFile; fileRef = D07D2EE4245469F00000823D /* AFNetworkReachabilityManager.m */; };
 		D07D2F04245469F10000823D /* AFSecurityPolicy.m in Sources */ = {isa = PBXBuildFile; fileRef = D07D2EE6245469F00000823D /* AFSecurityPolicy.m */; };
@@ -91,11 +93,6 @@
 		D0B6B43A2483E13B000749C0 /* touch_grey_04.png in Resources */ = {isa = PBXBuildFile; fileRef = D0B6B4252483E13A000749C0 /* touch_grey_04.png */; };
 		D0B6B43B2483E13B000749C0 /* touch_grey_11.png in Resources */ = {isa = PBXBuildFile; fileRef = D0B6B4262483E13A000749C0 /* touch_grey_11.png */; };
 		D0B6B43C2483E13B000749C0 /* touch_grey_17.png in Resources */ = {isa = PBXBuildFile; fileRef = D0B6B4272483E13A000749C0 /* touch_grey_17.png */; };
-		D0B6B4482483EBC7000749C0 /* PGBarChartDataModel.m in Sources */ = {isa = PBXBuildFile; fileRef = D0B6B43E2483EBC7000749C0 /* PGBarChartDataModel.m */; };
-		D0B6B4492483EBC7000749C0 /* PGBar.m in Sources */ = {isa = PBXBuildFile; fileRef = D0B6B43F2483EBC7000749C0 /* PGBar.m */; };
-		D0B6B44A2483EBC7000749C0 /* PGBox.m in Sources */ = {isa = PBXBuildFile; fileRef = D0B6B4402483EBC7000749C0 /* PGBox.m */; };
-		D0B6B44B2483EBC7000749C0 /* PGBarChartLabel.m in Sources */ = {isa = PBXBuildFile; fileRef = D0B6B4412483EBC7000749C0 /* PGBarChartLabel.m */; };
-		D0B6B44C2483EBC7000749C0 /* PGBarChart.m in Sources */ = {isa = PBXBuildFile; fileRef = D0B6B4462483EBC7000749C0 /* PGBarChart.m */; };
 		D0CBA9412461A23A0008D44D /* CQTextView.m in Sources */ = {isa = PBXBuildFile; fileRef = D0CBA9402461A23A0008D44D /* CQTextView.m */; };
 		D0CBB0ED2461BD060008D44D /* cat.plist in Resources */ = {isa = PBXBuildFile; fileRef = D0CBB0EC2461BD060008D44D /* cat.plist */; };
 		D0CBB1312461C17A0008D44D /* CCHtomCatModel.m in Sources */ = {isa = PBXBuildFile; fileRef = D0CBB12F2461C17A0008D44D /* CCHtomCatModel.m */; };
@@ -209,8 +206,12 @@
 		D01F5AEE2484D66C0084B630 /* play_grey_15.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = play_grey_15.png; sourceTree = "<group>"; };
 		D01F5AEF2484D66C0084B630 /* play_grey_07.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = play_grey_07.png; sourceTree = "<group>"; };
 		D01F5AF02484D66D0084B630 /* play_grey_19.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = play_grey_19.png; sourceTree = "<group>"; };
-		D0510F352477F5FB0079E0E3 /* FzhDrawChart.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FzhDrawChart.h; sourceTree = "<group>"; };
-		D0510F362477F5FB0079E0E3 /* FzhDrawChart.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FzhDrawChart.m; sourceTree = "<group>"; };
+		D01F5B072484DE6D0084B630 /* JChartView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JChartView.h; sourceTree = "<group>"; };
+		D01F5B082484DE6D0084B630 /* XLabelCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XLabelCell.h; sourceTree = "<group>"; };
+		D01F5B092484DE6D0084B630 /* CylindricalShellCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CylindricalShellCell.m; sourceTree = "<group>"; };
+		D01F5B0A2484DE6D0084B630 /* XLabelCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XLabelCell.m; sourceTree = "<group>"; };
+		D01F5B0B2484DE6D0084B630 /* JChartView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JChartView.m; sourceTree = "<group>"; };
+		D01F5B0C2484DE6D0084B630 /* CylindricalShellCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CylindricalShellCell.h; sourceTree = "<group>"; };
 		D07D2EDF245469F00000823D /* AFCompatibilityMacros.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AFCompatibilityMacros.h; sourceTree = "<group>"; };
 		D07D2EE0245469F00000823D /* AFHTTPSessionManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AFHTTPSessionManager.h; sourceTree = "<group>"; };
 		D07D2EE1245469F00000823D /* AFHTTPSessionManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AFHTTPSessionManager.m; sourceTree = "<group>"; };
@@ -315,16 +316,6 @@
 		D0B6B4252483E13A000749C0 /* touch_grey_04.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = touch_grey_04.png; sourceTree = "<group>"; };
 		D0B6B4262483E13A000749C0 /* touch_grey_11.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = touch_grey_11.png; sourceTree = "<group>"; };
 		D0B6B4272483E13A000749C0 /* touch_grey_17.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = touch_grey_17.png; sourceTree = "<group>"; };
-		D0B6B43E2483EBC7000749C0 /* PGBarChartDataModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PGBarChartDataModel.m; sourceTree = "<group>"; };
-		D0B6B43F2483EBC7000749C0 /* PGBar.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PGBar.m; sourceTree = "<group>"; };
-		D0B6B4402483EBC7000749C0 /* PGBox.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PGBox.m; sourceTree = "<group>"; };
-		D0B6B4412483EBC7000749C0 /* PGBarChartLabel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PGBarChartLabel.m; sourceTree = "<group>"; };
-		D0B6B4422483EBC7000749C0 /* PGBarChart.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PGBarChart.h; sourceTree = "<group>"; };
-		D0B6B4432483EBC7000749C0 /* PGBar.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PGBar.h; sourceTree = "<group>"; };
-		D0B6B4442483EBC7000749C0 /* PGBarChartDataModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PGBarChartDataModel.h; sourceTree = "<group>"; };
-		D0B6B4452483EBC7000749C0 /* PGBox.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PGBox.h; sourceTree = "<group>"; };
-		D0B6B4462483EBC7000749C0 /* PGBarChart.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PGBarChart.m; sourceTree = "<group>"; };
-		D0B6B4472483EBC7000749C0 /* PGBarChartLabel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PGBarChartLabel.h; sourceTree = "<group>"; };
 		D0CBA93F2461A23A0008D44D /* CQTextView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CQTextView.h; sourceTree = "<group>"; };
 		D0CBA9402461A23A0008D44D /* CQTextView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CQTextView.m; sourceTree = "<group>"; };
 		D0CBB0EC2461BD060008D44D /* cat.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = cat.plist; sourceTree = "<group>"; };
@@ -451,13 +442,18 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		D0510F342477F5FB0079E0E3 /* FzhDrawChart */ = {
+		D01F5B062484DE6D0084B630 /* ChartView */ = {
 			isa = PBXGroup;
 			children = (
-				D0510F352477F5FB0079E0E3 /* FzhDrawChart.h */,
-				D0510F362477F5FB0079E0E3 /* FzhDrawChart.m */,
+				D01F5B072484DE6D0084B630 /* JChartView.h */,
+				D01F5B082484DE6D0084B630 /* XLabelCell.h */,
+				D01F5B092484DE6D0084B630 /* CylindricalShellCell.m */,
+				D01F5B0A2484DE6D0084B630 /* XLabelCell.m */,
+				D01F5B0B2484DE6D0084B630 /* JChartView.m */,
+				D01F5B0C2484DE6D0084B630 /* CylindricalShellCell.h */,
 			);
-			path = FzhDrawChart;
+			name = ChartView;
+			path = "../../Downloads/ChartView-master/CustomChartView/ChartView";
 			sourceTree = "<group>";
 		};
 		D07D2EDE245469F00000823D /* AFNetworking */ = {
@@ -576,23 +572,6 @@
 				D09348202455837300183F81 /* libstdc++.tbd */,
 			);
 			name = Frameworks;
-			sourceTree = "<group>";
-		};
-		D0B6B43D2483EBC7000749C0 /* PGBarChart */ = {
-			isa = PBXGroup;
-			children = (
-				D0B6B43E2483EBC7000749C0 /* PGBarChartDataModel.m */,
-				D0B6B43F2483EBC7000749C0 /* PGBar.m */,
-				D0B6B4402483EBC7000749C0 /* PGBox.m */,
-				D0B6B4412483EBC7000749C0 /* PGBarChartLabel.m */,
-				D0B6B4422483EBC7000749C0 /* PGBarChart.h */,
-				D0B6B4432483EBC7000749C0 /* PGBar.h */,
-				D0B6B4442483EBC7000749C0 /* PGBarChartDataModel.h */,
-				D0B6B4452483EBC7000749C0 /* PGBox.h */,
-				D0B6B4462483EBC7000749C0 /* PGBarChart.m */,
-				D0B6B4472483EBC7000749C0 /* PGBarChartLabel.h */,
-			);
-			path = PGBarChart;
 			sourceTree = "<group>";
 		};
 		D0CBB0EB2461BB2B0008D44D /* Supporting Files */ = {
@@ -731,8 +710,7 @@
 		D0F20BC02453D1EC001336D3 = {
 			isa = PBXGroup;
 			children = (
-				D0B6B43D2483EBC7000749C0 /* PGBarChart */,
-				D0510F342477F5FB0079E0E3 /* FzhDrawChart */,
+				D01F5B062484DE6D0084B630 /* ChartView */,
 				D0CBB0EB2461BB2B0008D44D /* Supporting Files */,
 				D093481824557C5000183F81 /* SDK */,
 				D07D2F1A245568FF0000823D /* Masonry */,
@@ -1058,12 +1036,12 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D01F5B0E2484DE6E0084B630 /* XLabelCell.m in Sources */,
 				D07D2F132455475A0000823D /* SearchDiaryViewController.m in Sources */,
 				D0DF8BB42453D8810041DDD7 /* LoginViewController.m in Sources */,
 				D07D2F03245469F10000823D /* AFNetworkReachabilityManager.m in Sources */,
 				D07D2F0C245469F10000823D /* UIButton+AFNetworking.m in Sources */,
 				D07D2F36245568FF0000823D /* MASCompositeConstraint.m in Sources */,
-				D0B6B4482483EBC7000749C0 /* PGBarChartDataModel.m in Sources */,
 				D07D2F3A245568FF0000823D /* MASViewAttribute.m in Sources */,
 				D0CBB1312461C17A0008D44D /* CCHtomCatModel.m in Sources */,
 				D07D2F09245469F10000823D /* AFImageDownloader.m in Sources */,
@@ -1078,9 +1056,8 @@
 				D07D2F19245564D10000823D /* forgetPasswordViewController.m in Sources */,
 				D07D2F39245568FF0000823D /* MASLayoutConstraint.m in Sources */,
 				D093483C24587E4600183F81 /* addDiaryEventViewController.m in Sources */,
-				D0510F372477F5FB0079E0E3 /* FzhDrawChart.m in Sources */,
 				D07D2F0F245469F10000823D /* UIRefreshControl+AFNetworking.m in Sources */,
-				D0B6B44B2483EBC7000749C0 /* PGBarChartLabel.m in Sources */,
+				D01F5B0F2484DE6E0084B630 /* JChartView.m in Sources */,
 				D0CBB16D246415720008D44D /* SettingTableViewCell.m in Sources */,
 				D0F20BCE2453D1EC001336D3 /* AppDelegate.m in Sources */,
 				D07D2F08245469F10000823D /* AFAutoPurgingImageCache.m in Sources */,
@@ -1091,9 +1068,9 @@
 				D0DF8BC32453E7D60041DDD7 /* PetViewController.m in Sources */,
 				D07D2F04245469F10000823D /* AFSecurityPolicy.m in Sources */,
 				D09348392458780900183F81 /* addDiaryMoodViewController.m in Sources */,
-				D0B6B44C2483EBC7000749C0 /* PGBarChart.m in Sources */,
 				D07D2F05245469F10000823D /* AFURLRequestSerialization.m in Sources */,
 				D0DF8BC02453E7C00041DDD7 /* CountViewController.m in Sources */,
+				D01F5B0D2484DE6E0084B630 /* CylindricalShellCell.m in Sources */,
 				D0CBB1662462A7E60008D44D /* User.m in Sources */,
 				D07D2F3E245568FF0000823D /* View+MASAdditions.m in Sources */,
 				D07D2F10245469F10000823D /* UIWebView+AFNetworking.m in Sources */,
@@ -1102,8 +1079,6 @@
 				D07D2F0B245469F10000823D /* UIActivityIndicatorView+AFNetworking.m in Sources */,
 				D0DF8BBD2453E7980041DDD7 /* InformationViewController.m in Sources */,
 				D0CBB163246296020008D44D /* information2ViewController.m in Sources */,
-				D0B6B44A2483EBC7000749C0 /* PGBox.m in Sources */,
-				D0B6B4492483EBC7000749C0 /* PGBar.m in Sources */,
 				D07D2F3B245568FF0000823D /* MASViewConstraint.m in Sources */,
 				D07D2F16245547ED0000823D /* addDiaryViewController.m in Sources */,
 				D0CBB159246287ED0008D44D /* listDiaryTableViewCell.m in Sources */,
