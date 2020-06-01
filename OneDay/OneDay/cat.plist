@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<array>
+	<dict>
+		<key>imageName</key>
+		<string>play</string>
+		<key>frames</key>
+		<integer>16</integer>
+		<key>soundFiles</key>
+		<array>
+			<string>p_eat.m4a</string>
+		</array>
+		<key>comment</key>
+		<string>陪它玩</string>
+	</dict>
+	<dict>
+		<key>imageName</key>
+		<string>eat</string>
+		<key>frames</key>
+		<integer>16</integer>
+		<key>soundFiles</key>
+		<array>
+			<string>p_eat.m4a</string>
+		</array>
+		<key>comment</key>
+		<string>喂食</string>
+	</dict>
+	<dict>
+		<key>imageName</key>
+		<string>touch</string>
+		<key>frames</key>
+		<integer>16</integer>
+		<key>soundFiles</key>
+		<array>
+			<string>p_eat.m4a</string>
+		</array>
+		<key>comment</key>
+		<string>摸摸它</string>
+	</dict>
+</array>
+</plist>

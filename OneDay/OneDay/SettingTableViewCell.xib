@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="13771" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13772"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="cellid2" rowHeight="70" id="KGk-i7-Jjw" customClass="SettingTableViewCell">
+            <rect key="frame" x="0.0" y="0.0" width="331" height="70"/>
+            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+            <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="KGk-i7-Jjw" id="H2p-sc-9uM">
+                <rect key="frame" x="0.0" y="0.0" width="331" height="69.5"/>
+                <autoresizingMask key="autoresizingMask"/>
+                <subviews>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="标题" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="P6N-8v-qrb">
+                        <rect key="frame" x="16" y="17" width="213" height="35"/>
+                        <constraints>
+                            <constraint firstAttribute="width" constant="213" id="Ghy-Lw-f60"/>
+                            <constraint firstAttribute="height" constant="35" id="M5q-Up-9pc"/>
+                        </constraints>
+                        <fontDescription key="fontDescription" type="system" pointSize="16"/>
+                        <nil key="textColor"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                    <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="EoC-1y-irc">
+                        <rect key="frame" x="283" y="18" width="32" height="32"/>
+                        <constraints>
+                            <constraint firstAttribute="width" constant="45" id="4fn-uB-Dwh"/>
+                            <constraint firstAttribute="height" constant="28" id="l1n-mO-hAj"/>
+                        </constraints>
+                        <state key="normal" title="开关"/>
+                    </button>
+                </subviews>
+                <constraints>
+                    <constraint firstItem="P6N-8v-qrb" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="16" id="Zve-nT-HJ7"/>
+                    <constraint firstItem="P6N-8v-qrb" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="17" id="lWM-kk-fUl"/>
+                    <constraint firstAttribute="trailing" secondItem="EoC-1y-irc" secondAttribute="trailing" constant="36" id="uOb-Ny-4AF"/>
+                    <constraint firstItem="EoC-1y-irc" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="19" id="ylP-eA-F1G"/>
+                </constraints>
+            </tableViewCellContentView>
+            <viewLayoutGuide key="safeArea" id="aW0-zy-SZf"/>
+            <connections>
+                <outlet property="btn" destination="EoC-1y-irc" id="DVz-Ef-Cb8"/>
+                <outlet property="title" destination="P6N-8v-qrb" id="Fhy-SS-ZLd"/>
+            </connections>
+            <point key="canvasLocation" x="-294.5" y="34"/>
+        </tableViewCell>
+    </objects>
+</document>
