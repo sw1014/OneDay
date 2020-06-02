@@ -227,8 +227,8 @@ enum btnType{
     [playbtn addTarget:self action:@selector(play) forControlEvents:UIControlEventTouchDown];
     [scrollView addSubview:playbtn];
     [playbtn mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.size.mas_equalTo(CGSizeMake(49, 43));
-        make.left.equalTo(scrollView).offset(311);
+        make.size.mas_equalTo(CGSizeMake(49, 47));
+        make.left.equalTo(scrollView).offset(347);
         make.top.equalTo(scrollView).offset(272);
     }];
     UIView *informationView = [[UIView alloc] init];
