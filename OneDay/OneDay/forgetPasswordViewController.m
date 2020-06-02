@@ -170,13 +170,14 @@
              [manager1 POST:@"http://localhost:8080/OneDay/user/register" parameters:dic1 progress:nil success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
                  NSDictionary *nsdic=responseObject;
                  NSLog(@"%@",nsdic);
-                 [[NSUserDefaults standardUserDefaults] setObject:[nsdic objectForKey:@"phone"] forKey:@"phone"];
+                 [[NSUserDefaults standardUserDefaults] setObject:[NSString stringWithFormat:@"%@",[nsdic objectForKey:@"phone"]] forKey:@"phone"];
+                 //因为返回的phone是long类型 所以要做转化
                  [[NSUserDefaults standardUserDefaults] setObject:[nsdic objectForKey:@"email"] forKey:@"email"];
                  [[NSUserDefaults standardUserDefaults] setObject:[nsdic objectForKey:@"password"] forKey:@"password"];
                  if ([[nsdic objectForKey:@"photo"] isKindOfClass:[NSNull class]])
                  {
-                     [[NSUserDefaults standardUserDefaults] setObject:@"默认" forKey:@"photo"];
-                     
+                     [[NSUserDefaults standardUserDefaults] setObject:@"" forKey:@"photo"];
+                     //注册的话 返回null
                  }
                  else
                  {
@@ -222,6 +223,7 @@
                      nav3.tabBarItem.selectedImage=[UIImage imageNamed:@"面-人物"];
                      tab.tabBar.tintColor=[UIColor grayColor];
                      tab.viewControllers=@[nav1,nav2,nav3];
+                     tab.modalPresentationStyle=UIModalPresentationFullScreen;
                      [self presentViewController:tab animated:YES completion:nil];
                      
                      

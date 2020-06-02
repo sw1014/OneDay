@@ -207,6 +207,7 @@
 -(void)changeid
 {
     LoginViewController *vc=[[LoginViewController alloc]init];
+    vc.modalPresentationStyle=UIModalPresentationFullScreen;
     [self presentViewController:vc animated:YES completion:nil];
 }
 -(NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
