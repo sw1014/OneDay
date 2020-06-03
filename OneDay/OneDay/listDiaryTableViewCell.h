@@ -17,4 +17,5 @@
 @property (weak, nonatomic) IBOutlet UIImageView *picture;
 @property(nonatomic)NSString *content;
 @property(nonatomic)NSString *idnumber;
+@property(nonatomic)NSString *picurl;
 @end

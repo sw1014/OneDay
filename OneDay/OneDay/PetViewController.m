@@ -159,7 +159,6 @@ enum btnType{
             manager1.requestSerializer = [AFJSONRequestSerializer serializer];
             manager1.responseSerializer = [AFHTTPResponseSerializer serializer];
             [manager1 POST:@"http://localhost:8080/OneDay/pet/petIntimacy" parameters:dic1 progress:nil success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
-                NSLog(@"%@",responseObject);
                 [[NSUserDefaults standardUserDefaults] setObject:[NSNumber numberWithInteger:_intimacy] forKey:@"intimacy"];
                 [[NSUserDefaults standardUserDefaults] synchronize];
                 _numberLable2.text =[NSString stringWithFormat:@"%ld%%",_intimacy];

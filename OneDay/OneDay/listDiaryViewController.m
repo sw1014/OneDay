@@ -165,6 +165,7 @@
         cell.title.text=item.title;
         cell.content=item.content;
         cell.idnumber=item.idnumber;
+        cell.picurl=item.picture;
         NSString *str1=item.picture;
         if ([str1 isEqualToString:@"默认图片"])
         {
@@ -191,6 +192,7 @@
     vc.date=cell.date.text;
     vc.content=cell.content;
     vc.idnumber=cell.idnumber;
+    vc.picture=cell.picurl;
     [self.navigationController pushViewController:vc animated:YES];
     //[self.tableview deselectRowAtIndexPath:indexPath animated:NO];
 }

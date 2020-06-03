@@ -15,6 +15,6 @@
 @property(nonatomic)NSString *mood;
 @property(nonatomic)NSString *event;
 @property(nonatomic)NSString *content;
-
+@property(nonatomic)NSString *picture;
 @property(nonatomic)NSString *idnumber;
 @end
