@@ -40,6 +40,9 @@
 @property(nonatomic)UIView *editview;
 @property(nonatomic,strong)UITextField *textfield1;
 @property(nonatomic,strong)UITextField *textfield2;
+@property(nonatomic)UIButton *eatbtn;
+@property(nonatomic)UIButton *playbtn;
+
 enum btnType{
     PLAY=1,
     EAT,
@@ -76,8 +79,6 @@ enum btnType{
     for (NSInteger i=0; i<count; i++) {
         _color=[[NSUserDefaults standardUserDefaults] objectForKey:@"color"];
         NSString * path = [[NSBundle mainBundle] pathForResource:[NSString stringWithFormat:@"%@_%@_%02ld.png",name,_color,i] ofType:nil];
-        NSString *stra=[NSString stringWithFormat:@"%@_%@_%02ld.png",name,_color,i];
-        NSLog(@"%@",stra);
         UIImage * tempImg=[UIImage imageWithContentsOfFile:path];
         if (tempImg)
         {
@@ -122,10 +123,69 @@ enum btnType{
     [self loadAninmationWithName:model.name andCount:model.count];
     [self loadSoundsWithName:model.sound];
 }
-
+-(void)initimgsAnimation
+{
+    //判断猫咪是否要离家出走
+    NSDictionary *dic1=@{
+                         @"phone":_phone,
+                         };
+    AFHTTPSessionManager *manager1=[AFHTTPSessionManager manager];
+    manager1.requestSerializer = [AFJSONRequestSerializer serializer];
+    manager1.responseSerializer = [AFJSONResponseSerializer serializer];
+    [manager1 POST:@"http://localhost:8080/OneDay/diary/diaryLastet" parameters:dic1 progress:nil success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
+        NSDictionary *dic=responseObject;
+        NSString *str=[dic objectForKey:@"date"];
+        NSDate *startdate=[_formatter dateFromString:str];//日期加减
+        NSCalendar *calendar=[NSCalendar currentCalendar];
+        NSCalendarUnit unit=NSCalendarUnitDay;
+        NSDateComponents *delta=[calendar components:unit fromDate:startdate toDate:_enddate options:0];
+        if (delta.day>2)
+        {
+            //设置两个按钮消失
+            _eatbtn.userInteractionEnabled=NO;
+            _eatbtn.alpha=0;
+            _playbtn.userInteractionEnabled=NO;
+            _playbtn.alpha=0;
+            
+            
+            _textLable3.text =[NSString stringWithFormat:@"它已经离开你%ld天了",delta.day];
+            _imgsAnimation.image=[UIImage imageNamed:[NSString stringWithFormat:@"go_%@",_color]];
+            _intimacy=_intimacy-2;
+            NSDictionary *dic1=@{
+                                 @"phone":_phone,
+                                 @"intimacy":[NSNumber numberWithInteger:_intimacy],
+                                 };
+            AFHTTPSessionManager *manager1=[AFHTTPSessionManager manager];
+            manager1.requestSerializer = [AFJSONRequestSerializer serializer];
+            manager1.responseSerializer = [AFHTTPResponseSerializer serializer];
+            [manager1 POST:@"http://localhost:8080/OneDay/pet/petIntimacy" parameters:dic1 progress:nil success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
+                NSLog(@"%@",responseObject);
+                [[NSUserDefaults standardUserDefaults] setObject:[NSNumber numberWithInteger:_intimacy] forKey:@"intimacy"];
+                [[NSUserDefaults standardUserDefaults] synchronize];
+                _numberLable2.text =[NSString stringWithFormat:@"%ld%%",_intimacy];
+            } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
+                NSError *err=error;
+                NSLog(@"%@",err);
+            }];
+        }
+        else
+        {
+            //不用出走
+            _imgsAnimation.image=[UIImage imageNamed:[NSString stringWithFormat:@"%@猫咪",_color]];
+        }
+    } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
+        NSError *err=error;
+        NSLog(@"%@",err);
+        _imgsAnimation.image=[UIImage imageNamed:[NSString stringWithFormat:@"%@猫咪",_color]];
+    }];
+}
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    _enddate=[NSDate date];
+    _formatter=[[NSDateFormatter alloc]init];
+    [_formatter setDateFormat:@"yyyy-MM-dd"];
+    _date2=[_formatter stringFromDate:_enddate];
     [self initdata];
     self.navigationItem.title=@"OneDay";
     self.view.backgroundColor=[UIColor whiteColor];
@@ -194,7 +254,7 @@ enum btnType{
     }];
     
     //猫咪模型
-    _imgsAnimation=[[UIImageView alloc]initWithImage:[UIImage imageNamed:[NSString stringWithFormat:@"%@猫咪",_color]]];
+    _imgsAnimation=[[UIImageView alloc]init];
     [scrollView addSubview:_imgsAnimation];
     [_imgsAnimation mas_makeConstraints:^(MASConstraintMaker *make) {
         make.size.mas_equalTo(CGSizeMake(200, 230));
@@ -212,23 +272,23 @@ enum btnType{
            make.top.equalTo(scrollView).offset(200);
        }];
     
-    UIButton *eatbtn=[[UIButton alloc]init];
-    [eatbtn setBackgroundImage:[UIImage imageNamed:@"猫粮"] forState:UIControlStateNormal];
-    [eatbtn setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
-    [eatbtn addTarget:self action:@selector(eat) forControlEvents:UIControlEventTouchDown];
-    [scrollView addSubview:eatbtn];
-    [eatbtn mas_makeConstraints:^(MASConstraintMaker *make) {
+    _eatbtn=[[UIButton alloc]init];
+    [_eatbtn setBackgroundImage:[UIImage imageNamed:@"猫粮"] forState:UIControlStateNormal];
+    [_eatbtn setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
+    [_eatbtn addTarget:self action:@selector(eat) forControlEvents:UIControlEventTouchDown];
+    [scrollView addSubview:_eatbtn];
+    [_eatbtn mas_makeConstraints:^(MASConstraintMaker *make) {
         make.size.mas_equalTo(CGSizeMake(49, 47));
         make.left.equalTo(scrollView).offset(23);
         make.top.equalTo(scrollView).offset(272);
     }];
 
-    UIButton *playbtn=[[UIButton alloc]init];
-    [playbtn setBackgroundImage:[UIImage imageNamed:@"陪他玩"] forState:UIControlStateNormal];
-    [playbtn setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
-    [playbtn addTarget:self action:@selector(play) forControlEvents:UIControlEventTouchDown];
-    [scrollView addSubview:playbtn];
-    [playbtn mas_makeConstraints:^(MASConstraintMaker *make) {
+    _playbtn=[[UIButton alloc]init];
+    [_playbtn setBackgroundImage:[UIImage imageNamed:@"陪他玩"] forState:UIControlStateNormal];
+    [_playbtn setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
+    [_playbtn addTarget:self action:@selector(play) forControlEvents:UIControlEventTouchDown];
+    [scrollView addSubview:_playbtn];
+    [_playbtn mas_makeConstraints:^(MASConstraintMaker *make) {
         make.size.mas_equalTo(CGSizeMake(49, 47));
         make.left.equalTo(scrollView).offset(340);
         make.top.equalTo(scrollView).offset(272);
@@ -530,7 +590,6 @@ enum btnType{
 -(void)editpet
 {
     
-    
     _editview.frame=CGRectMake(-380, -311, _editview.bounds.size.width, _editview.bounds.size.height);
  NSDictionary *dic1=@{
                       @"phone":_phone,
@@ -602,12 +661,9 @@ enum btnType{
 }
 -(void)initdata
 {
-    _enddate=[NSDate date];
-    _formatter=[[NSDateFormatter alloc]init];
-    [_formatter setDateFormat:@"yyyy-MM-dd"];
-    _date2=[_formatter stringFromDate:_enddate];
      _timeLable.text =[NSString stringWithFormat:@"今天是 %@",_date2];
     //存储日期
+
     [[NSUserDefaults standardUserDefaults] setObject:_date2 forKey:@"date"];
     [[NSUserDefaults standardUserDefaults] synchronize];
     _phone=[[NSUserDefaults standardUserDefaults]objectForKey:@"phone"];
@@ -638,7 +694,7 @@ enum btnType{
         NSDateComponents *delta=[calendar components:unit fromDate:startdate toDate:_enddate options:0];
         _textLable3.text =[NSString stringWithFormat:@"它已经陪伴你%ld天了",delta.day];
         _nameLable.text =[NSString stringWithFormat:@"猫名：%@",_petname];
-        _imgsAnimation.image=[UIImage imageNamed:[NSString stringWithFormat:@"%@猫咪",_color]];
+        [self initimgsAnimation];
     } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
         NSError *err=error;
         NSLog(@"%@",err);

@@ -166,8 +166,6 @@
         cell.content=item.content;
         cell.idnumber=item.idnumber;
         NSString *str1=item.picture;
-        NSLog(@"!!!!%@",cell.date.text);
-        NSLog(@"!!!!%@",str1);
         if ([str1 isEqualToString:@"默认图片"])
         {
             cell.picture.image=[UIImage imageNamed:@"猫咪2"];
