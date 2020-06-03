@@ -448,14 +448,13 @@
         NSLog(@"%@",err);
     }];
     
-    
-    
 
 }
 -(void)search:(UIButton *)btn//按日期查询
 {
     NSInteger day=[btn.titleLabel.text integerValue];
-    NSString *str=[NSString stringWithFormat:@"%zd-%02ld-%02d",[self getCurrentYear:_currentDate],(long)[self getCurrentMonth:_currentDate],day];
+    NSString *str=[NSString stringWithFormat:@"%zd-%02ld-%02ld",[self getCurrentYear:_currentDate],(long)[self getCurrentMonth:_currentDate],(long)day];
+    NSLog(@"这篇日记的日期是：%@",str);
     listDiaryViewController *vc=[[listDiaryViewController alloc]init];
     vc.date=str;
     [self.navigationController pushViewController:vc animated:YES];

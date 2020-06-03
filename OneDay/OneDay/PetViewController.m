@@ -13,6 +13,8 @@
 #import <AVFoundation/AVFoundation.h>
 #import "CCHtomCatModel.h"
 #import "AFNetworking.h"
+#import "listDiaryViewController.h"
+#import "Diary.h"
 #define FILENAME @"cat.plist"
 @interface PetViewController ()
 @property(strong,nonatomic)UIImageView *imgsAnimation;
@@ -130,7 +132,7 @@ enum btnType{
     self.navigationController.navigationBar.barTintColor=[UIColor whiteColor];
     self.navigationController.navigationBar.tintColor=[UIColor colorWithRed:88/255.0 green:87/255.0 blue:86/255.0 alpha:1];
     self.navigationItem.rightBarButtonItem=[[UIBarButtonItem alloc]initWithImage:[UIImage imageNamed:@"添加"] style:UIBarButtonItemStylePlain target:self action:@selector(addDiary)];
-    self.navigationItem.leftBarButtonItem=[[UIBarButtonItem alloc]initWithImage:[UIImage imageNamed:@"搜索"] style:UIBarButtonItemStylePlain target:self action:@selector(searchDiary)];
+    self.navigationItem.leftBarButtonItem=[[UIBarButtonItem alloc]initWithImage:[UIImage imageNamed:@"日记"] style:UIBarButtonItemStylePlain target:self action:@selector(searchDiary)];
     UIScrollView *scrollView=[[UIScrollView alloc]init];
     scrollView.backgroundColor=[UIColor clearColor];
     scrollView.contentSize=CGSizeMake(self.view.bounds.size.width, self.view.bounds.size.height);
@@ -228,7 +230,7 @@ enum btnType{
     [scrollView addSubview:playbtn];
     [playbtn mas_makeConstraints:^(MASConstraintMaker *make) {
         make.size.mas_equalTo(CGSizeMake(49, 47));
-        make.left.equalTo(scrollView).offset(347);
+        make.left.equalTo(scrollView).offset(340);
         make.top.equalTo(scrollView).offset(272);
     }];
     UIView *informationView = [[UIView alloc] init];
@@ -652,11 +654,107 @@ enum btnType{
     [self initdata];
 }
 
-
+//查看所有的日记
 -(void)searchDiary
 {
+    
+    listDiaryViewController *vc=[[listDiaryViewController alloc]init];
+    NSString *phone=[[NSUserDefaults standardUserDefaults] objectForKey:@"phone"];
+    NSDictionary *param1=@{
+        @"phone":_phone,
+    };
+    NSDictionary *param2=@{
+        @"desc":@"true",
+    };
+    NSDictionary *dic1=@{
+                         @"searchItems":param1,
+                         @"page":param2,
+                         };
+    AFHTTPSessionManager *manager1=[AFHTTPSessionManager manager];
+    manager1.requestSerializer = [AFJSONRequestSerializer serializer];
+    manager1.responseSerializer = [AFJSONResponseSerializer serializer];
+    [manager1 POST:@"http://localhost:8080/OneDay/diary/diaryByItemsAndPage" parameters:dic1 progress:nil success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
+        NSArray *arr=responseObject;
+      //  NSLog(@"!!!!%@", arr);
+        for (int i=0; i<arr.count; i++)
+        {
+            NSDictionary *dic=arr[i];
+            NSString *phone=[NSString stringWithFormat:@"%@",[dic objectForKey:@"phone"]];
+            NSString *title=[[NSString alloc]init];
+            NSString *weather=[[NSString alloc]init];
+            NSString *event=[[NSString alloc]init];
+            NSString *mood=[[NSString alloc]init];
+            NSString *picture=[[NSString alloc]init];
+            NSString *content=[[NSString alloc]init];
+            NSString *date=[dic objectForKey:@"date"];
+            NSString *draft=[NSString stringWithFormat:@"%@",[dic objectForKey:@"draft"]];
+            NSString *idnumber=[NSString stringWithFormat:@"%@",[dic objectForKey:@"id"]];
+            if ([[dic objectForKey:@"title"] isKindOfClass:[NSNull class]]||[[dic objectForKey:@"title"] isEqualToString:@""])
+            {
+                title=@"这是一篇没有标题的日记";
+            }
+            else
+            {
+                title=[dic objectForKey:@"title"];
+            }
+            if ([[dic objectForKey:@"weather"] isKindOfClass:[NSNull class]]||[[dic objectForKey:@"weather"] isEqualToString:@""])
+            {
+                weather=@"这是一篇没有天气的日记";
+            }
+            else
+            {
+                weather=[dic objectForKey:@"weather"];
+            }
+            if ([[dic objectForKey:@"mood"] isKindOfClass:[NSNull class]]||[[dic objectForKey:@"mood"] isEqualToString:@""])
+            {
+                mood=@"这是一篇没有心情的日记";
+            }
+            else
+            {
+                mood=[dic objectForKey:@"mood"];
+            }
+            if ([[dic objectForKey:@"event"] isKindOfClass:[NSNull class]]||[[dic objectForKey:@"event"] isEqualToString:@""])
+            {
+                 event=@"这是一篇没有事件的日记";
+            }
+            else
+            {
+                event=[dic objectForKey:@"event"];
+            }
+            if ([[dic objectForKey:@"picture"] isKindOfClass:[NSNull class]]||[[dic objectForKey:@"picture"] isEqualToString:@""])
+            {
+                picture=@"默认图片";
+            }
+            else
+            {
+                picture=[dic objectForKey:@"picture"];
+            }
+            if ([[dic objectForKey:@"content"] isKindOfClass:[NSNull class]]||[[dic objectForKey:@"content"] isEqualToString:@""])
+            {
+                content=@"无";
+            }
+            else
+            {
+                content=[dic objectForKey:@"content"];
+            }
+            Diary *diary=[[Diary alloc]initWithUserphone:phone Pic:picture Date:date Title:title Weather:weather Mood:mood Event:event Draft:draft Content:content Id:idnumber];
+            [vc.datasource addObject:diary];
+        }
+        [vc.tableview reloadData];
+        
+    } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
+        NSError *err=error;
+        NSLog(@"%@",err);
+    }];
+    [self.navigationController pushViewController:vc animated:YES];
+    
+    /*
+    //通过标签查找
     SearchDiaryViewController *searchVC=[[SearchDiaryViewController alloc]init];
     [self.navigationController pushViewController:searchVC animated:YES];
+    
+    */
+    
 }
 -(void)addDiary
 {
