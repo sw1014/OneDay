@@ -239,6 +239,7 @@
         else if (indexPath.row==2)
         {
             listDiaryViewController *vc=[[listDiaryViewController alloc]init];
+            vc.draft=true;
             NSString *phone=[[NSUserDefaults standardUserDefaults] objectForKey:@"phone"];
             NSDictionary *dic1=@{
                                  @"phone":phone,
@@ -253,19 +254,66 @@
                 for (int i=0; i<arr.count; i++)
                 {
                     NSDictionary *dic=arr[i];
-                    NSString *phone=[dic objectForKey:@"phone"];
-                    NSString *title=[dic objectForKey:@"title"];
+                    NSString *phone=[NSString stringWithFormat:@"%@",[dic objectForKey:@"phone"]];
+                    NSString *title=[[NSString alloc]init];
+                    NSString *weather=[[NSString alloc]init];
+                    NSString *event=[[NSString alloc]init];
+                    NSString *mood=[[NSString alloc]init];
+                    NSString *picture=[[NSString alloc]init];
+                    NSString *content=[[NSString alloc]init];
                     NSString *date=[dic objectForKey:@"date"];
-                    NSString *weather=[dic objectForKey:@"weather"];
-                    NSString *mood=[dic objectForKey:@"mood"];
-                    NSString *event=[dic objectForKey:@"event"];
-                    NSString *picture=[dic objectForKey:@"picture"];
-                    NSString *content=[dic objectForKey:@"content"];
-                    NSString *draft=[dic objectForKey:@"draft"];
-                    NSString *idnumber=[dic objectForKey:@"id"];
+                    NSString *draft=[NSString stringWithFormat:@"%@",[dic objectForKey:@"draft"]];
+                    NSString *idnumber=[NSString stringWithFormat:@"%@",[dic objectForKey:@"id"]];
+                    if ([[dic objectForKey:@"title"] isKindOfClass:[NSNull class]]||[[dic objectForKey:@"title"] isEqualToString:@""])
+                    {
+                        title=@"这是一篇没有标题的日记";
+                    }
+                    else
+                    {
+                        title=[dic objectForKey:@"title"];
+                    }
+                    if ([[dic objectForKey:@"weather"] isKindOfClass:[NSNull class]]||[[dic objectForKey:@"weather"] isEqualToString:@""])
+                    {
+                        weather=@"这是一篇没有天气的日记";
+                    }
+                    else
+                    {
+                        weather=[dic objectForKey:@"weather"];
+                    }
+                    if ([[dic objectForKey:@"mood"] isKindOfClass:[NSNull class]]||[[dic objectForKey:@"mood"] isEqualToString:@""])
+                    {
+                        mood=@"这是一篇没有心情的日记";
+                    }
+                    else
+                    {
+                        mood=[dic objectForKey:@"mood"];
+                    }
+                    if ([[dic objectForKey:@"event"] isKindOfClass:[NSNull class]]||[[dic objectForKey:@"event"] isEqualToString:@""])
+                    {
+                         event=@"这是一篇没有事件的日记";
+                    }
+                    else
+                    {
+                        event=[dic objectForKey:@"event"];
+                    }
+                    if ([[dic objectForKey:@"picture"] isKindOfClass:[NSNull class]]||[[dic objectForKey:@"picture"] isEqualToString:@""])
+                    {
+                        picture=@"默认图片";
+                    }
+                    else
+                    {
+                        picture=[dic objectForKey:@"picture"];
+                    }
+                    if ([[dic objectForKey:@"content"] isKindOfClass:[NSNull class]]||[[dic objectForKey:@"content"] isEqualToString:@""])
+                    {
+                        content=@"无";
+                    }
+                    else
+                    {
+                        content=[dic objectForKey:@"content"];
+                    }
                     Diary *diary=[[Diary alloc]initWithUserphone:phone Pic:picture Date:date Title:title Weather:weather Mood:mood Event:event Draft:draft Content:content Id:idnumber];
                     [vc.datasource addObject:diary];
-                    
                 }
                 [vc.tableview reloadData];
                 

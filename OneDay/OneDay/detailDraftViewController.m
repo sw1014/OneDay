@@ -1,16 +1,16 @@
 //
-//  detailDiaryViewController.m
+//  detailDraftViewController.m
 //  OneDay
 //
-//  Created by sw on 2020/5/6.
-//  Copyright © 2020年 sw. All rights reserved.
+//  Created by sw on 2020/6/4.
+//  Copyright © 2020 sw. All rights reserved.
 //
 
-#import "detailDiaryViewController.h"
+#import "detailDraftViewController.h"
 #import "CountViewController.h"
 #import "Masonry.h"
 #import "AFNetworking.h"
-@interface detailDiaryViewController ()
+@interface detailDraftViewController ()
 @property(nonatomic,strong)UILabel *titleLable;
 @property(nonatomic,strong)UILabel *dateLable;
 @property(nonatomic,strong)UILabel *weatherLable;
@@ -21,7 +21,7 @@
 @property(nonatomic)UIView *settingview;
 @end
 
-@implementation detailDiaryViewController
+@implementation detailDraftViewController
 
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -161,7 +161,7 @@
     _settingview.layer.cornerRadius=9;
     [self.view addSubview:_settingview];
     UIButton *btn1=[[UIButton alloc]init];
-    [btn1 setTitle:@"保存修改" forState:UIControlStateNormal];
+    [btn1 setTitle:@"保存到日记" forState:UIControlStateNormal];
     [btn1 setTitleColor:[UIColor grayColor] forState:UIControlStateNormal];
     [btn1 addTarget:self action:@selector(updateDiary) forControlEvents:UIControlEventTouchDown];
     [_settingview addSubview:btn1];
@@ -172,7 +172,7 @@
     }];
     
     UIButton *btn2=[[UIButton alloc]init];
-    [btn2 setTitle:@"删除日记" forState:UIControlStateNormal];
+    [btn2 setTitle:@"删除草稿" forState:UIControlStateNormal];
     [btn2 setTitleColor:[UIColor grayColor] forState:UIControlStateNormal];
     [btn2 addTarget:self action:@selector(deleteDiary) forControlEvents:UIControlEventTouchDown];
     [_settingview addSubview:btn2];
@@ -204,7 +204,7 @@
     _settingview.frame=CGRectMake(-414, 55,122,119);
     //删除日记
     UIAlertController* alert = [UIAlertController alertControllerWithTitle:@""
-                                                                      message:@"是否删除日记"
+                                                                      message:@"是否删除草稿"
                                                                preferredStyle:UIAlertControllerStyleActionSheet];
        
        UIAlertAction* cancelAction = [UIAlertAction actionWithTitle:@"取消" style:UIAlertActionStyleCancel
@@ -255,7 +255,7 @@
     _settingview.frame=CGRectMake(-414, 55,122,119);
     //修改日记
     UIAlertController* alert = [UIAlertController alertControllerWithTitle:@""
-                                                                      message:@"是否修改日记"
+                                                                      message:@"是否保存该草稿到日记"
                                                                preferredStyle:UIAlertControllerStyleActionSheet];
        
        UIAlertAction* cancelAction = [UIAlertAction actionWithTitle:@"取消" style:UIAlertActionStyleCancel
@@ -317,15 +317,4 @@
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
 }
-
-/*
-#pragma mark - Navigation
-
-// In a storyboard-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
-}
-*/
-
 @end

@@ -232,7 +232,9 @@
         make.size.mas_equalTo(CGSizeMake(414, 197));
         make.top.equalTo(self.view).offset(512);
     }];
-    
+    NSString *weather=@"没有记录天气哦";
+    [[NSUserDefaults standardUserDefaults] setObject:weather forKey:@"weather"];
+    [[NSUserDefaults standardUserDefaults] synchronize];
     
     
     
@@ -249,10 +251,14 @@
 
 -(void)changecolor:(UIButton *)btn
 {
+    
     if (btn.selected)
     {
         btn.backgroundColor=[UIColor whiteColor];
         btn.selected=NO;
+        NSString *weather=@"没有记录天气哦";
+        [[NSUserDefaults standardUserDefaults] setObject:weather forKey:@"weather"];
+        [[NSUserDefaults standardUserDefaults] synchronize];
     }
     else
     {
@@ -270,10 +276,11 @@
         _weatherbtn6.backgroundColor=[UIColor whiteColor];
         btn.backgroundColor=[UIColor grayColor];
         btn.selected=YES;
+        NSString *weather=btn.titleLabel.text;
+           [[NSUserDefaults standardUserDefaults] setObject:weather forKey:@"weather"];
+           [[NSUserDefaults standardUserDefaults] synchronize];
+        
     }
-    NSString *weather=btn.titleLabel.text;
-    [[NSUserDefaults standardUserDefaults] setObject:weather forKey:@"weather"];
-    [[NSUserDefaults standardUserDefaults] synchronize];
     
    // NSLog(btn.titleLabel.text);
 }

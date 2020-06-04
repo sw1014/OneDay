@@ -199,6 +199,7 @@
 		D054E05E2484F7AF003D7DAF /* play_orange_08.png in Resources */ = {isa = PBXBuildFile; fileRef = D054DFA12484F7AE003D7DAF /* play_orange_08.png */; };
 		D054E05F2484F7AF003D7DAF /* play_orange_20.png in Resources */ = {isa = PBXBuildFile; fileRef = D054DFA22484F7AE003D7DAF /* play_orange_20.png */; };
 		D054E0602484F7AF003D7DAF /* play_orange_09.png in Resources */ = {isa = PBXBuildFile; fileRef = D054DFA32484F7AE003D7DAF /* play_orange_09.png */; };
+		D054E06624889434003D7DAF /* detailDraftViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D054E06524889434003D7DAF /* detailDraftViewController.m */; };
 		D07D2F02245469F10000823D /* AFHTTPSessionManager.m in Sources */ = {isa = PBXBuildFile; fileRef = D07D2EE1245469F00000823D /* AFHTTPSessionManager.m */; };
 		D07D2F03245469F10000823D /* AFNetworkReachabilityManager.m in Sources */ = {isa = PBXBuildFile; fileRef = D07D2EE4245469F00000823D /* AFNetworkReachabilityManager.m */; };
 		D07D2F04245469F10000823D /* AFSecurityPolicy.m in Sources */ = {isa = PBXBuildFile; fileRef = D07D2EE6245469F00000823D /* AFSecurityPolicy.m */; };
@@ -479,6 +480,8 @@
 		D054DFA12484F7AE003D7DAF /* play_orange_08.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = play_orange_08.png; sourceTree = "<group>"; };
 		D054DFA22484F7AE003D7DAF /* play_orange_20.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = play_orange_20.png; sourceTree = "<group>"; };
 		D054DFA32484F7AE003D7DAF /* play_orange_09.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = play_orange_09.png; sourceTree = "<group>"; };
+		D054E06424889434003D7DAF /* detailDraftViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = detailDraftViewController.h; sourceTree = "<group>"; };
+		D054E06524889434003D7DAF /* detailDraftViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = detailDraftViewController.m; sourceTree = "<group>"; };
 		D07D2EDF245469F00000823D /* AFCompatibilityMacros.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AFCompatibilityMacros.h; sourceTree = "<group>"; };
 		D07D2EE0245469F00000823D /* AFHTTPSessionManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AFHTTPSessionManager.h; sourceTree = "<group>"; };
 		D07D2EE1245469F00000823D /* AFHTTPSessionManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AFHTTPSessionManager.m; sourceTree = "<group>"; };
@@ -1127,6 +1130,8 @@
 				D09348382458780900183F81 /* addDiaryMoodViewController.m */,
 				D093483A24587E4600183F81 /* addDiaryEventViewController.h */,
 				D093483B24587E4600183F81 /* addDiaryEventViewController.m */,
+				D054E06424889434003D7DAF /* detailDraftViewController.h */,
+				D054E06524889434003D7DAF /* detailDraftViewController.m */,
 				D07D2F112455475A0000823D /* SearchDiaryViewController.h */,
 				D07D2F122455475A0000823D /* SearchDiaryViewController.m */,
 				D0DF8BBE2453E7C00041DDD7 /* CountViewController.h */,
@@ -1549,6 +1554,7 @@
 				D0CBB163246296020008D44D /* information2ViewController.m in Sources */,
 				D07D2F3B245568FF0000823D /* MASViewConstraint.m in Sources */,
 				D07D2F16245547ED0000823D /* addDiaryViewController.m in Sources */,
+				D054E06624889434003D7DAF /* detailDraftViewController.m in Sources */,
 				D0CBB159246287ED0008D44D /* listDiaryTableViewCell.m in Sources */,
 				D07D2F3C245568FF0000823D /* NSArray+MASAdditions.m in Sources */,
 				D07D2F06245469F10000823D /* AFURLResponseSerialization.m in Sources */,

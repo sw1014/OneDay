@@ -12,6 +12,7 @@
 #import "listDiaryTableViewCell.h"
 #import "detailDiaryViewController.h"
 #import "AFNetworking.h"
+#import "detailDraftViewController.h"
 @interface listDiaryViewController ()<UITableViewDelegate,UITableViewDataSource>
 @property(nonatomic)NSString *phone;
 @end
@@ -46,6 +47,7 @@
     {
         [self initdata];
     }
+    
 }
 
 - (void)didReceiveMemoryWarning {
@@ -184,17 +186,33 @@
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
     listDiaryTableViewCell *cell=[self.tableview cellForRowAtIndexPath:indexPath];
-    detailDiaryViewController *vc=[[detailDiaryViewController alloc]init];
-    vc.diarytitle=cell.title.text;
-    vc.event=cell.event.text;
-    vc.weather=cell.weather.text;
-    vc.mood=cell.mood.text;
-    vc.date=cell.date.text;
-    vc.content=cell.content;
-    vc.idnumber=cell.idnumber;
-    vc.picture=cell.picurl;
-    [self.navigationController pushViewController:vc animated:YES];
-    //[self.tableview deselectRowAtIndexPath:indexPath animated:NO];
+    if (_draft)
+    {
+        detailDraftViewController *vc=[[detailDraftViewController alloc]init];
+        vc.diarytitle=cell.title.text;
+        vc.event=cell.event.text;
+        vc.weather=cell.weather.text;
+        vc.mood=cell.mood.text;
+        vc.date=cell.date.text;
+        vc.content=cell.content;
+        vc.idnumber=cell.idnumber;
+        vc.picture=cell.picurl;
+        [self.navigationController pushViewController:vc animated:YES];
+    }
+    else
+    {
+        detailDiaryViewController *vc=[[detailDiaryViewController alloc]init];
+        vc.diarytitle=cell.title.text;
+        vc.event=cell.event.text;
+        vc.weather=cell.weather.text;
+        vc.mood=cell.mood.text;
+        vc.date=cell.date.text;
+        vc.content=cell.content;
+        vc.idnumber=cell.idnumber;
+        vc.picture=cell.picurl;
+        [self.navigationController pushViewController:vc animated:YES];
+        //[self.tableview deselectRowAtIndexPath:indexPath animated:NO];
+    }
 }
 
 /*

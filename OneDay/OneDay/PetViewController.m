@@ -563,9 +563,10 @@ enum btnType{
 {
     if (btn.selected)
     {
-        btn.backgroundColor=[UIColor whiteColor];
-        [btn setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
-        btn.selected=NO;
+        btn.backgroundColor=[UIColor colorWithRed:255.0/255 green:208.0/255 blue:129.0/255 alpha:1];
+        [btn setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
+        btn.selected=YES;
+        
     }
     else
     {
@@ -575,9 +576,13 @@ enum btnType{
         _colorbtn1.backgroundColor=[UIColor whiteColor];
         _colorbtn2.backgroundColor=[UIColor whiteColor];
         _colorbtn3.backgroundColor=[UIColor whiteColor];
+        [_colorbtn1 setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
+        [_colorbtn2 setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
+        [_colorbtn3 setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
         btn.backgroundColor=[UIColor colorWithRed:255.0/255 green:208.0/255 blue:129.0/255 alpha:1];
         btn.selected=YES;
         [btn setTitleColor:[UIColor whiteColor] forState:UIControlStateSelected];
+        
     }
     _color=btn.titleLabel.text;
 }
@@ -714,6 +719,7 @@ enum btnType{
 {
     
     listDiaryViewController *vc=[[listDiaryViewController alloc]init];
+    vc.draft=false;
     NSString *phone=[[NSUserDefaults standardUserDefaults] objectForKey:@"phone"];
     NSDictionary *param1=@{
         @"phone":_phone,

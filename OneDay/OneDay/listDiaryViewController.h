@@ -12,5 +12,6 @@
 @property(nonatomic,strong)NSString *date;
 @property(nonatomic)UITableView *tableview;
 @property(nonatomic)NSMutableArray *datasource;
+@property(nonatomic)BOOL draft;
 -(void)initdata;
 @end

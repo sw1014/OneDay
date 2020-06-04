@@ -22,6 +22,9 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    NSString *event=@"没有记录事件哦";
+    [[NSUserDefaults standardUserDefaults] setObject:event forKey:@"event"];
+    [[NSUserDefaults standardUserDefaults] synchronize];
     self.tabBarController.tabBar.hidden=YES;
     self.view.backgroundColor=[UIColor whiteColor];
     self.navigationController.navigationBar.topItem.title = @"";
@@ -252,6 +255,9 @@
     {
         btn.backgroundColor=[UIColor whiteColor];
         btn.selected=NO;
+        NSString *event=@"没有记录事件哦";
+           [[NSUserDefaults standardUserDefaults] setObject:event forKey:@"event"];
+           [[NSUserDefaults standardUserDefaults] synchronize];
     }
     else
     {
@@ -269,10 +275,10 @@
         _moodbtn6.backgroundColor=[UIColor whiteColor];
         btn.selected=YES;
         btn.backgroundColor=[UIColor grayColor];
+        NSString *event=btn.titleLabel.text;
+           [[NSUserDefaults standardUserDefaults] setObject:event forKey:@"event"];
+           [[NSUserDefaults standardUserDefaults] synchronize];
     }
-    NSString *event=btn.titleLabel.text;
-    [[NSUserDefaults standardUserDefaults] setObject:event forKey:@"event"];
-    [[NSUserDefaults standardUserDefaults] synchronize];
 }
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];

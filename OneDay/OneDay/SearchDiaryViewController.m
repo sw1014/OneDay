@@ -480,6 +480,7 @@
 -(void)search
 {
     listDiaryViewController *vc=[[listDiaryViewController alloc]init];
+    vc.draft=false;
     NSString *phone=[[NSUserDefaults standardUserDefaults] objectForKey:@"phone"];
     NSDictionary *dic1=@{
                          @"phone":phone,

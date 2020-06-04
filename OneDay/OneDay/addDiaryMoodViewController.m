@@ -232,7 +232,9 @@
         make.top.equalTo(self.view).offset(512);
     }];
     
-    
+    NSString *mood=@"没有记录心情哦";
+    [[NSUserDefaults standardUserDefaults] setObject:mood forKey:@"mood"];
+    [[NSUserDefaults standardUserDefaults] synchronize];
     
     
     
@@ -252,6 +254,9 @@
     {
         btn.backgroundColor=[UIColor whiteColor];
         btn.selected=NO;
+        NSString *mood=@"没有记录心情哦";
+               [[NSUserDefaults standardUserDefaults] setObject:mood forKey:@"mood"];
+               [[NSUserDefaults standardUserDefaults] synchronize];
     }
     else
     {
@@ -269,10 +274,10 @@
         _moodbtn6.backgroundColor=[UIColor whiteColor];
         btn.selected=YES;
         btn.backgroundColor=[UIColor grayColor];
+        NSString *mood=btn.titleLabel.text;
+           [[NSUserDefaults standardUserDefaults] setObject:mood forKey:@"mood"];
+           [[NSUserDefaults standardUserDefaults] synchronize];
     }
-    NSString *mood=btn.titleLabel.text;
-    [[NSUserDefaults standardUserDefaults] setObject:mood forKey:@"mood"];
-    [[NSUserDefaults standardUserDefaults] synchronize];
 }
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];

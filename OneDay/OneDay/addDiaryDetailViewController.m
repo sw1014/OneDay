@@ -162,9 +162,18 @@
                                    {
                                        NSString *content=_textview1.textView.text;
                                        NSString *title=_textfield1.text;
+        if ([title isEqualToString:@""])
+        {
+            title=@"标题为空";
+        }
+        if ([content isEqualToString:@""])
+        {
+            content=@"内容为空";
+        }
+        
                                        NSString *phone=[[NSUserDefaults standardUserDefaults]objectForKey:@"phone"];
                                        NSString *weather=[[NSUserDefaults standardUserDefaults]objectForKey:@"weather"];
-                                       NSString *event=[[NSUserDefaults standardUserDefaults]objectForKey:@"event"];                                       NSString *mood=[[NSUserDefaults standardUserDefaults]objectForKey:@"mood"];
+                                       NSString *event=[[NSUserDefaults standardUserDefaults]objectForKey:@"event"];                          NSString *mood=[[NSUserDefaults standardUserDefaults]objectForKey:@"mood"];
                                        NSString *draft=@"false";
                                        NSDictionary *dic1=@{
                                                             @"phone":phone,
@@ -180,17 +189,29 @@
                                        
                                        manager.requestSerializer = [AFHTTPRequestSerializer serializer];
                                        manager.responseSerializer = [AFHTTPResponseSerializer serializer];
-                                    
                                        [manager POST:@"http://localhost:8080/OneDay/diary/newDiary" parameters:dic1 constructingBodyWithBlock:^(id<AFMultipartFormData>  _Nonnull formData)
                                         {
-                                           
-                                            NSData *data=UIImageJPEGRepresentation(_imageview.image, 0.7);
-                                            NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
-                                            formatter.dateFormat = @"yyyyMMddHHmmss";
-                                            NSString *str = [formatter stringFromDate:[NSDate date]];
-                                            NSString *fileName = [NSString stringWithFormat:@"%@.jpg", str];
-                                            //上传文件参数
-                                            [formData appendPartWithFileData:data name:@"picture" fileName:fileName mimeType:@"image/jpeg"];
+                                           if (_imageview.image)
+                                           {
+                                               NSData *data=UIImageJPEGRepresentation(_imageview.image, 0.7);
+                                                                                          NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
+                                                                                          formatter.dateFormat = @"yyyyMMddHHmmss";
+                                                                                          NSString *str = [formatter stringFromDate:[NSDate date]];
+                                                                                          NSString *fileName = [NSString stringWithFormat:@"%@.jpg", str];
+                                                                                          //上传文件参数
+                                                                                          [formData appendPartWithFileData:data name:@"picture" fileName:fileName mimeType:@"image/jpeg"];
+                                           }
+                                           else
+                                           {
+                                               UIImage *image=[UIImage imageNamed:@"猫咪2"];
+                                               NSData *data=UIImageJPEGRepresentation(image, 0.7);
+                                               NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
+                                               formatter.dateFormat = @"yyyyMMddHHmmss";
+                                               NSString *str = [formatter stringFromDate:[NSDate date]];
+                                               NSString *fileName = [NSString stringWithFormat:@"%@.jpg", str];
+                                               //上传文件参数
+                                               [formData appendPartWithFileData:data name:@"picture" fileName:fileName mimeType:@"image/jpeg"];
+                                           }
                                             
                                         } progress:^(NSProgress * _Nonnull uploadProgress) {
                                             
@@ -233,6 +254,14 @@
                                                     
                                                            NSString *content=_textview1.textView.text;
                                                            NSString *title=_textfield1.text;
+        if ([title isEqualToString:@""])
+               {
+                   title=@"标题为空";
+               }
+               if ([content isEqualToString:@""])
+               {
+                   content=@"内容为空";
+               }
                                                            NSString *phone=[[NSUserDefaults standardUserDefaults]objectForKey:@"phone"];
                                                            NSString *weather=[[NSUserDefaults standardUserDefaults]objectForKey:@"weather"];
                                                            NSString *event=[[NSUserDefaults standardUserDefaults]objectForKey:@"event"];                                       NSString *mood=[[NSUserDefaults standardUserDefaults]objectForKey:@"mood"];
